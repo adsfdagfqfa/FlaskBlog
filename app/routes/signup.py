@@ -113,7 +113,7 @@ def signup():
                                     "user",
                                     0,
                                     currentTimeStamp(),
-                                    "False",
+                                    "True",
                                 ),
                             )
                             connection.commit()
@@ -121,6 +121,7 @@ def signup():
                             Log.success(f'User: "{userName}" added to database')
 
                             session["userName"] = userName
+                            session["userRole"] = "user"
                             addPoints(1, session["userName"])
                             Log.success(f'User: "{userName}" logged in')
 
@@ -130,6 +131,8 @@ def signup():
                                 category="success",
                                 language=session["language"],
                             )
+
+                            return redirect("/")
 
                             # Send welcome email
                             context = ssl.create_default_context()
