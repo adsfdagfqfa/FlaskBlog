@@ -162,6 +162,7 @@ cython_debug/
 
 # App's default log files
 *.log
+app/log/
 
 # PyCharm files
 /.idea

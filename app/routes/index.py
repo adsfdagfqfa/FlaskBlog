@@ -16,6 +16,7 @@ subject to change without notice. Use of this code for commercial or non-commerc
 purposes without permission is strictly prohibited.
 """
 
+import math
 import sqlite3
 from json import load
 
@@ -58,6 +59,8 @@ def index(by="hot", sort="desc"):
     Log.database(f"Connecting to '{DB_POSTS_ROOT}' database")
 
     connection = sqlite3.connect(DB_POSTS_ROOT)
+    connection.create_function("log", 1, math.log10)
+    connection.create_function("pow", 2, pow)
     connection.set_trace_callback(Log.database)
 
     cursor = connection.cursor()
